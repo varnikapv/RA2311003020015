@@ -1,7 +1,8 @@
 import { Alert, Stack } from "@mui/material";
 import AppShell from "../../components/app-shell";
 import FilterBar from "../../components/filter-bar";
-import NotificationList from "../../components/notification-list";
+import NotificationWorkspace from "../../components/notification-workspace";
+import PaginationBar from "../../components/pagination-bar";
 import {
   fetchNotifications,
   parseNotificationType,
@@ -33,20 +34,27 @@ export default async function PriorityPage({
   );
 
   try {
-    const notifications = await fetchNotifications({
-      limit: Math.max(limit, 20),
-      page,
-      notificationType,
-    });
+    const notifications = await fetchNotifications();
+    const filteredNotifications =
+      notificationType === "All"
+        ? notifications
+        : notifications.filter(
+            (notification) => notification.Type === notificationType
+          );
     const priorityNotifications = getTopPriorityNotifications(
-      notifications,
-      limit
+      filteredNotifications,
+      filteredNotifications.length
+    );
+    const startIndex = (page - 1) * limit;
+    const paginatedNotifications = priorityNotifications.slice(
+      startIndex,
+      startIndex + limit
     );
 
     return (
       <AppShell
         title="Priority Notifications"
-        description="This page uses the Stage 1 scoring model and shows the highest-priority notifications for the current slice of API data."
+        description="Top priority notifications for the current view."
       >
         <Stack spacing={3}>
           <FilterBar
@@ -55,9 +63,17 @@ export default async function PriorityPage({
             currentPage={page}
             currentType={notificationType}
           />
-          <NotificationList
-            notifications={priorityNotifications}
+          <NotificationWorkspace
+            notifications={paginatedNotifications}
             emptyMessage="No priority notifications matched the current filter."
+            mode="priority"
+          />
+          <PaginationBar
+            basePath="/priority"
+            currentLimit={limit}
+            currentPage={page}
+            currentType={notificationType}
+            hasNextPage={startIndex + limit < priorityNotifications.length}
           />
         </Stack>
       </AppShell>
@@ -69,11 +85,10 @@ export default async function PriorityPage({
     return (
       <AppShell
         title="Priority Notifications"
-        description="This page uses the Stage 1 scoring model and shows the highest-priority notifications for the current slice of API data."
+        description="Top priority notifications for the current view."
       >
         <Alert severity="error">{message}</Alert>
       </AppShell>
     );
   }
 }
-

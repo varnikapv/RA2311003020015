@@ -77,38 +77,11 @@ export function parseNotificationType(
   return "All";
 }
 
-export function buildNotificationQuery({
-  limit,
-  page,
-  notificationType,
-}: NotificationQuery): string {
-  const params = new URLSearchParams();
-
-  if (limit) {
-    params.set("limit", String(limit));
-  }
-
-  if (page) {
-    params.set("page", String(page));
-  }
-
-  if (notificationType && notificationType !== "All") {
-    params.set("notification_type", notificationType);
-  }
-
-  return params.toString();
-}
-
 export async function fetchNotifications(
-  query: NotificationQuery = {}
+  _query: NotificationQuery = {}
 ): Promise<NotificationItem[]> {
   const token = getAccessToken();
-  const queryString = buildNotificationQuery(query);
-  const requestUrl = queryString
-    ? `${NOTIFICATIONS_API_URL}?${queryString}`
-    : NOTIFICATIONS_API_URL;
-
-  const response = await fetch(requestUrl, {
+  const response = await fetch(NOTIFICATIONS_API_URL, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Box, Button, Card, CardContent, Stack, Typography } from "@mui/material";
 import type { NotificationType } from "../lib/notifications";

@@ -1,13 +1,7 @@
+"use client";
+
 import Link from "next/link";
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Chip,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Card, CardContent, Chip, Stack, Typography } from "@mui/material";
 import {
   NOTIFICATION_TYPES,
   type NotificationType,
@@ -67,9 +61,6 @@ export default function FilterBar({
             <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
               Filters
             </Typography>
-            <Typography variant="body2" sx={{ color: "#5b6973" }}>
-              Step 1 wires server data, paging, and type filtering.
-            </Typography>
           </Box>
           <Box
             sx={{
@@ -108,27 +99,6 @@ export default function FilterBar({
               gap: 1,
             }}
           >
-            {[5, 10, 20].map((limit) => {
-              const selected = limit === currentLimit;
-
-              return (
-                <Button
-                  key={limit}
-                  component={Link}
-                  href={buildHref(basePath, limit, 1, currentType)}
-                  size="small"
-                  variant={selected ? "contained" : "outlined"}
-                  sx={{
-                    borderRadius: 1.5,
-                    color: selected ? "#fff" : "#233540",
-                    bgcolor: selected ? "#b35c2e" : "transparent",
-                    borderColor: "rgba(19, 28, 35, 0.14)",
-                  }}
-                >
-                  Show {limit}
-                </Button>
-              );
-            })}
           </Box>
         </Stack>
       </CardContent>

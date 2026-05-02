@@ -1,7 +1,7 @@
 import { Alert, Stack } from "@mui/material";
 import AppShell from "../components/app-shell";
 import FilterBar from "../components/filter-bar";
-import NotificationList from "../components/notification-list";
+import NotificationWorkspace from "../components/notification-workspace";
 import PaginationBar from "../components/pagination-bar";
 import {
   fetchNotifications,
@@ -49,9 +49,10 @@ export default async function Home({ searchParams }: HomePageProps) {
             currentPage={page}
             currentType={notificationType}
           />
-          <NotificationList
+          <NotificationWorkspace
             notifications={notifications}
             emptyMessage="No notifications matched the current filter."
+            mode="all"
           />
           <PaginationBar
             basePath="/"
