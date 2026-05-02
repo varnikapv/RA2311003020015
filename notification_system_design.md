@@ -35,27 +35,7 @@ Authorization: Bearer <ACCESS_TOKEN>
 
 The response is parsed in memory. Since the API does not provide a read/unread field in Stage 1, all returned notifications are handled as unread.
 
-## Implementation
 
-- Read the bearer token from `ACCESS_TOKEN`.
-- Fetch notifications from the API.
-- Calculate type weight, timestamp value, and priority score.
-- Keep the best 10 notifications.
-- Print the final list clearly for the output screenshot.
-
-The runnable file is:
-
-```txt
-notification_app_be/index.ts
-```
-
-Run it with:
-
-```sh
-ACCESS_TOKEN=<token> npm run stage1
-```
-
-Alternatively, place `ACCESS_TOKEN=<token>` in `.env.local` and run `npm run stage1`.
 
 ## Efficient Maintenance:
 
