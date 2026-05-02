@@ -2,7 +2,7 @@
 
  The goal of this project is to process incoming notifications and ensure that the most important and recent ones are surfaced first.
 
-## 📌 Overview
+##  Overview
 
 The system fetches notifications from a protected API and determines priority based on:
 
@@ -13,7 +13,7 @@ The top notifications are then selected and displayed.
 
 ---
 
-## ⚙️ Approach
+##  Approach
 
 1. Fetched notifications using the provided API with authentication.
 2. Assigned weights to each notification type:
@@ -26,7 +26,7 @@ The top notifications are then selected and displayed.
 
 ---
 
-## 🚀 Efficiency Consideration
+## Efficiency Consideration
 
 To handle continuous incoming notifications efficiently:
 
@@ -36,7 +36,7 @@ To handle continuous incoming notifications efficiently:
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 * Node.js / JavaScript
 * REST API integration
@@ -44,7 +44,7 @@ To handle continuous incoming notifications efficiently:
 
 ---
 
-## 📸 Output
+##  Output
 
 ![alt text](image.png)
 
