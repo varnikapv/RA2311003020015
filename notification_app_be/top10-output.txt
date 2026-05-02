@@ -1,0 +1,80 @@
+> stage1
+> npm run stage1:build && node --env-file-if-exists=.env.local .stage1-build/notification_app_be/index.js
+
+
+> stage1:build
+> tsc -p tsconfig.stage1.json
+
+Top 10 Priority Notifications
+
+
+
+1. Placement
+   ID: 402cc605-f999-4496-9c96-fa5f038ec60c
+   Message: Microsoft Corporation hiring
+   Timestamp: 2026-05-02 04:00:39
+   Weight: 3
+   Priority Score: 31777674639000
+
+2. Placement
+   ID: f5825820-bfa0-4517-bc0a-8b0015e3e83f
+   Message: Meta Platforms Inc. hiring
+   Timestamp: 2026-05-01 22:01:03
+   Weight: 3
+   Priority Score: 31777653063000
+
+3. Placement
+   ID: 9be1189d-37af-4f3e-b169-4468fa0cc5d6
+   Message: Advanced Micro Devices Inc. hiring
+   Timestamp: 2026-05-01 21:30:27
+   Weight: 3
+   Priority Score: 31777651227000
+
+4. Placement
+   ID: c6c56124-538d-4e1d-a634-0bf17088aff9
+   Message: Advanced Micro Devices Inc. hiring
+   Timestamp: 2026-05-01 21:01:51
+   Weight: 3
+   Priority Score: 31777649511000
+
+5. Placement
+   ID: 675c52d9-f531-4c14-b55a-46837d8e9f4d
+   Message: Marriott International Inc. hiring
+   Timestamp: 2026-05-01 10:31:27
+   Weight: 3
+   Priority Score: 31777611687000
+
+6. Placement
+   ID: 2a139063-3d84-4042-a07f-24872797128c
+   Message: Amgen Inc. hiring
+   Timestamp: 2026-05-01 08:01:57
+   Weight: 3
+   Priority Score: 31777602717000
+
+7. Placement
+   ID: b0c143aa-9162-4e5d-9d80-2b5648d24d07
+   Message: Broadcom Inc. hiring
+   Timestamp: 2026-05-01 06:00:45
+   Weight: 3
+   Priority Score: 31777595445000
+
+8. Result
+   ID: 9e7e83b5-db7b-4ce4-b025-c2207a1e8815
+   Message: mid-sem
+   Timestamp: 2026-05-02 05:01:21
+   Weight: 2
+   Priority Score: 21777678281000
+
+9. Result
+   ID: 7fa228b9-4168-4171-9896-eafda880956a
+   Message: internal
+   Timestamp: 2026-05-02 05:00:57
+   Weight: 2
+   Priority Score: 21777678257000
+
+10. Result
+   ID: b3b27777-ffa0-48ec-b360-472a93dcf627
+   Message: mid-sem
+   Timestamp: 2026-05-02 04:31:39
+   Weight: 2
+   Priority Score: 21777676499000

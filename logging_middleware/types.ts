@@ -22,5 +22,4 @@ export type FrontendPackage =
 
 export type SharedPackage = "auth" | "config" | "middleware" | "utils";
 
-export type PackageName = BackendPackage | FrontendPackage | SharedPackage; 
-
+export type PackageName = BackendPackage | FrontendPackage | SharedPackage;

@@ -1,0 +1,23 @@
+{
+  "name": "priority-inbox",
+  "private": true,
+  "scripts": {
+    "dev": "next dev notification_app_fe",
+    "build": "next build notification_app_fe",
+    "stage1:build": "tsc -p tsconfig.stage1.json",
+    "stage1": "npm run stage1:build && node --env-file-if-exists=.env.local .stage1-build/notification_app_be/index.js"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^9.0.0",
+    "@types/node": "^25.6.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "next": "^16.2.4",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3"
+  }
+}
