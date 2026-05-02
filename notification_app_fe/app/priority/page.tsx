@@ -1,15 +1,15 @@
 import { Alert, Stack } from "@mui/material";
-import AppShell from "../components/app-shell";
-import FilterBar from "../components/filter-bar";
-import NotificationList from "../components/notification-list";
-import PaginationBar from "../components/pagination-bar";
+import AppShell from "../../components/app-shell";
+import FilterBar from "../../components/filter-bar";
+import NotificationList from "../../components/notification-list";
 import {
   fetchNotifications,
   parseNotificationType,
   parsePositiveInt,
-} from "../lib/notifications";
+} from "../../lib/notifications";
+import { getTopPriorityNotifications } from "../../lib/priority";
 
-type HomePageProps = {
+type PriorityPageProps = {
   searchParams?: Promise<Record<string, string | string[] | undefined>>;
 };
 
@@ -19,7 +19,9 @@ function getSearchValue(
   return Array.isArray(value) ? value[0] : value;
 }
 
-export default async function Home({ searchParams }: HomePageProps) {
+export default async function PriorityPage({
+  searchParams,
+}: PriorityPageProps) {
   const resolvedSearchParams = (await searchParams) ?? {};
   const limit = parsePositiveInt(
     getSearchValue(resolvedSearchParams.limit),
@@ -32,33 +34,30 @@ export default async function Home({ searchParams }: HomePageProps) {
 
   try {
     const notifications = await fetchNotifications({
-      limit,
+      limit: Math.max(limit, 20),
       page,
       notificationType,
     });
+    const priorityNotifications = getTopPriorityNotifications(
+      notifications,
+      limit
+    );
 
     return (
       <AppShell
-        title="All Notifications"
-        description="This is the Stage 2 foundation. The page is already reading live notification data, supports API-backed paging, and respects the type filter expected by the assessment."
+        title="Priority Notifications"
+        description="This page uses the Stage 1 scoring model and shows the highest-priority notifications for the current slice of API data."
       >
         <Stack spacing={3}>
           <FilterBar
-            basePath="/"
+            basePath="/priority"
             currentLimit={limit}
             currentPage={page}
             currentType={notificationType}
           />
           <NotificationList
-            notifications={notifications}
-            emptyMessage="No notifications matched the current filter."
-          />
-          <PaginationBar
-            basePath="/"
-            currentLimit={limit}
-            currentPage={page}
-            currentType={notificationType}
-            hasNextPage={notifications.length === limit}
+            notifications={priorityNotifications}
+            emptyMessage="No priority notifications matched the current filter."
           />
         </Stack>
       </AppShell>
@@ -69,11 +68,12 @@ export default async function Home({ searchParams }: HomePageProps) {
 
     return (
       <AppShell
-        title="All Notifications"
-        description="This is the Stage 2 foundation. The page is already reading live notification data, supports API-backed paging, and respects the type filter expected by the assessment."
+        title="Priority Notifications"
+        description="This page uses the Stage 1 scoring model and shows the highest-priority notifications for the current slice of API data."
       >
         <Alert severity="error">{message}</Alert>
       </AppShell>
     );
   }
 }
+
